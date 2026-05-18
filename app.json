@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/spots/spots",
+    "pages/weather/weather",
+    "pages/catchlog/catchlog",
+    "pages/community/community",
+    "pages/community/detail",
+    "pages/my/my",
+    "pages/map/map",
+    "pages/spots/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a3a5c",
+    "navigationBarTitleText": "去哪钓",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1a3a5c",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/spots/spots",
+        "text": "钓点"
+      },
+      {
+        "pagePath": "pages/weather/weather",
+        "text": "天气"
+      },
+      {
+        "pagePath": "pages/catchlog/catchlog",
+        "text": "鱼获"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": ["chooseLocation", "getLocation"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取您的位置以便导航到钓点"
+    }
+  }
+}

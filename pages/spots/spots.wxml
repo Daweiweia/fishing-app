@@ -1,0 +1,44 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索钓点名称、鱼种..." bindconfirm="onSearch"/>
+    <text class="filter-btn" bindtap="showFilter">筛选</text>
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view scroll-x class="category-scroll">
+    <view class="category-list">
+      <view class="category-item {{currentCategory === 'all' ? 'active' : ''}}" bindtap="selectCategory" data-cat="all">全部</view>
+      <view class="category-item {{currentCategory === 'free' ? 'active' : ''}}" bindtap="selectCategory" data-cat="free">免费</view>
+      <view class="category-item {{currentCategory === 'pond' ? 'active' : ''}}" bindtap="selectCategory" data-cat="pond">塘钓</view>
+      <view class="category-item {{currentCategory === 'wild' ? 'active' : ''}}" bindtap="selectCategory" data-cat="wild">野钓</view>
+      <view class="category-item {{currentCategory === 'lure' ? 'active' : ''}}" bindtap="selectCategory" data-cat="lure">路亚</view>
+      <view class="category-item {{currentCategory === 'boat' ? 'active' : ''}}" bindtap="selectCategory" data-cat="boat">船钓</view>
+    </view>
+  </scroll-view>
+
+  <!-- 钓点列表 -->
+  <view class="spot-list">
+    <view class="spot-item" wx:for="{{spots}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="spot-cover-placeholder" style="background:{{item.bgColor}}">
+        <text class="spot-icon">{{item.icon}}</text>
+      </view>
+      <view class="spot-content">
+        <view class="spot-header">
+          <text class="spot-name">{{item.name}}</text>
+          <text class="spot-distance">{{item.distance}}km</text>
+        </view>
+        <view class="spot-tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+        </view>
+        <view class="spot-meta">
+          <text class="meta-item">⭐ {{item.rating}}</text>
+          <text class="meta-item">👤 {{item.checkins}}人去过</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加钓点按钮 -->
+  <view class="add-btn" bindtap="addSpot">+ 添加钓点</view>
+</view>

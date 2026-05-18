@@ -1,0 +1,56 @@
+<view class="container">
+  <!-- 话题分类 -->
+  <scroll-view scroll-x class="topic-scroll">
+    <view class="topic-list">
+      <view class="topic-item {{currentTopic === 'all' ? 'active' : ''}}" bindtap="selectTopic" data-topic="all">全部</view>
+      <view class="topic-item {{currentTopic === 'skill' ? 'active' : ''}}" bindtap="selectTopic" data-topic="skill">#技巧</view>
+      <view class="topic-item {{currentTopic === 'gear' ? 'active' : ''}}" bindtap="selectTopic" data-topic="gear">#渔具</view>
+      <view class="topic-item {{currentTopic === 'spot' ? 'active' : ''}}" bindtap="selectTopic" data-topic="spot">#钓点</view>
+      <view class="topic-item {{currentTopic === 'fish' ? 'active' : ''}}" bindtap="selectTopic" data-topic="fish">#鱼种</view>
+    </view>
+  </scroll-view>
+
+  <!-- 帖子列表 -->
+  <scroll-view scroll-y class="post-list">
+    <view class="post-item" wx:for="{{posts}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <view class="post-header">
+        <text class="avatar">{{item.userIcon}}</text>
+        <view class="user-info">
+          <text class="username">{{item.username}}</text>
+          <text class="post-time">{{item.time}}</text>
+        </view>
+      </view>
+      <view class="post-content">
+        <text class="post-text">{{item.content}}</text>
+        <view class="post-images" wx:if="{{item.images && item.images.length > 0}}">
+          <image class="post-img" src="{{img}}" mode="aspectFill" wx:for="{{item.images}}" wx:key="*this"/>
+        </view>
+        <view class="post-tags" wx:if="{{item.topic && item.topic !== 'all'}}">
+          <text class="tag">#{{item.topic}}</text>
+        </view>
+      </view>
+      <view class="post-actions" catchtap="goToDetail" data-id="{{item.id}}">
+        <view class="action-item" catchtap="likePost" data-id="{{item.id}}">
+          <text class="icon">{{item.liked ? '❤️' : '🤍'}}</text>
+          <text>{{item.likes}}</text>
+        </view>
+        <view class="action-item" catchtap="commentPost" data-id="{{item.id}}">
+          <text class="icon">💬</text>
+          <text>{{item.comments}}</text>
+        </view>
+        <view class="action-item">
+          <text class="icon">🔗</text>
+          <text>分享</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{posts.length === 0}}">
+      <text>暂无帖子，快来发布第一条吧</text>
+    </view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="fab" bindtap="publish">
+    <text>+</text>
+  </view>
+</view>

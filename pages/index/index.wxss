@@ -1,0 +1,231 @@
+.banner {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+  padding: 40rpx 30rpx 30rpx;
+  color: #fff;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  opacity: 0.85;
+  margin-top: 8rpx;
+}
+
+.search-box {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50rpx;
+  padding: 18rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.search-box .placeholder {
+  color: rgba(255,255,255,0.7);
+  font-size: 28rpx;
+  margin-left: 12rpx;
+}
+
+.quick-entry {
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 20rpx;
+  background: #fff;
+  margin: -20rpx 20rpx 0;
+  border-radius: 20rpx;
+  margin-top: -20rpx;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+}
+
+.entry-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entry-icon {
+  font-size: 56rpx;
+  margin-bottom: 12rpx;
+}
+
+.entry-text {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.section {
+  padding: 30rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a3a5c;
+}
+
+.section-more {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.spots-scroll {
+  white-space: nowrap;
+}
+
+.spots-list {
+  display: inline-flex;
+  gap: 20rpx;
+}
+
+.spot-card {
+  width: 280rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.spot-img-placeholder {
+  width: 100%;
+  height: 160rpx;
+  border-radius: 16rpx 16rpx 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spot-icon {
+  font-size: 80rpx;
+}
+
+.spot-info {
+  padding: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spot-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.spot-distance {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.spot-tags {
+  padding: 0 16rpx 16rpx;
+  display: flex;
+  gap: 8rpx;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #e8f4ff;
+  color: #1a3a5c;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.weather-card {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+  border-radius: 20rpx;
+  padding: 40rpx;
+  color: #fff;
+}
+
+.weather-main {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 20rpx;
+}
+
+.weather-score {
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+.weather-label {
+  font-size: 28rpx;
+  opacity: 0.8;
+  margin-left: 12rpx;
+}
+
+.weather-tips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.tip-item {
+  background: rgba(255,255,255,0.2);
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.catch-list {
+  display: flex;
+  gap: 20rpx;
+  flex-wrap: wrap;
+}
+
+.catch-item {
+  width: 220rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.catch-img-placeholder {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 16rpx 16rpx 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catch-icon {
+  font-size: 80rpx;
+}
+
+.catch-info {
+  padding: 16rpx;
+}
+
+.fish-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.catch-size {
+  font-size: 22rpx;
+  color: #999;
+}

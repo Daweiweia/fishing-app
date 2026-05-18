@@ -1,0 +1,24 @@
+# 微信小程序构建产物
+dist/
+node_modules/
+
+# 配置文件（包含私人appid）
+project.config.json
+project.private.config.json
+
+# 开发工具
+.vscode/
+.sublime*
+*.sublime-*
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.log
+
+# 依赖
+package-lock.json
+yarn.lock
+
+# 云开发
+cloudfunctions/

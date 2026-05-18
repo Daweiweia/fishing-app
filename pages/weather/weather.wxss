@@ -1,0 +1,208 @@
+.city-scroll {
+  white-space: nowrap;
+  padding: 20rpx 30rpx;
+  background: #fff;
+}
+
+.city-list {
+  display: inline-flex;
+  gap: 16rpx;
+}
+
+.city-btn {
+  padding: 12rpx 28rpx;
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.city-btn.active {
+  background: #1a3a5c;
+  color: #fff;
+}
+
+.weather-card {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+  color: #fff;
+  text-align: center;
+  padding: 50rpx 0 40rpx;
+}
+
+.weather-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.temp {
+  font-size: 120rpx;
+  font-weight: bold;
+}
+
+.unit {
+  font-size: 40rpx;
+  margin-left: 8rpx;
+}
+
+.weather-desc {
+  font-size: 32rpx;
+  margin-top: 10rpx;
+  opacity: 0.9;
+}
+
+.date-info {
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  opacity: 0.7;
+}
+
+.details-card {
+  background: #fff;
+  margin: -20rpx 30rpx 0;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.detail-item .label {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.detail-item .value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.fishing-card, .tide-card, .sun-card {
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.fishing-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a3a5c;
+}
+
+.stars {
+  font-size: 28rpx;
+}
+
+.advice {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a3a5c;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.tide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.tide-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.tide-item:last-child {
+  border-bottom: none;
+}
+
+.tide-time {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  width: 120rpx;
+}
+
+.tide-type {
+  font-size: 24rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  margin: 0 20rpx;
+}
+
+.tide-type.up {
+  background: #e8f4ff;
+  color: #1a3a5c;
+}
+
+.tide-type.down {
+  background: #fff3e8;
+  color: #ff6b35;
+}
+
+.tide-height {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: auto;
+}
+
+.sun-card {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sun-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.sun-icon {
+  font-size: 48rpx;
+}
+
+.sun-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.sun-time {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}

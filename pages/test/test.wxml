@@ -1,0 +1,4 @@
+<view>
+  <button bindtap="onTap">点我</button>
+  <text>{{msg}}</text>
+</view>

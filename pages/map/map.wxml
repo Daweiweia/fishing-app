@@ -1,0 +1,91 @@
+<view class="container">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索钓点..." bindconfirm="onSearch" value="{{keyword}}"/>
+    <view class="search-btn" bindtap="onSearch">搜索</view>
+  </view>
+
+  <!-- 地图区域 -->
+  <view class="map-wrapper">
+    <map
+      id="map"
+      class="map"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="12"
+      markers="{{markers}}"
+      show-location
+      bindmarkertap="onMarkerTap"
+    ></map>
+  </view>
+
+  <!-- 底部钓点列表 -->
+  <view class="bottom-sheet {{showDetail ? 'active' : ''}}">
+    <view class="sheet-handle" bindtap="toggleSheet">
+      <view class="handle-bar"></view>
+    </view>
+
+    <view wx:if="{{!showDetail}}">
+      <view class="sheet-title">📍 附近钓点 ({{spots.length}}个)</view>
+      <scroll-view scroll-y class="spot-list">
+        <view class="spot-item" wx:for="{{spots}}" wx:key="id" bindtap="onSpotItemTap" data-id="{{item.id}}">
+          <view class="spot-icon" style="background:{{item.bgColor}}">{{item.icon}}</view>
+          <view class="spot-info">
+            <text class="spot-name">{{item.name}}</text>
+            <text class="spot-address">{{item.address}}</text>
+            <view class="spot-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+            </view>
+          </view>
+          <view class="spot-meta">
+            <text class="rating">⭐ {{item.rating}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 钓点详情 -->
+    <view wx:if="{{showDetail}}" class="spot-detail">
+      <view class="detail-header">
+        <view class="detail-icon" style="background:{{selectedSpot.bgColor}}">{{selectedSpot.icon}}</view>
+        <view class="detail-title">
+          <text class="name">{{selectedSpot.name}}</text>
+          <text class="rating">⭐ {{selectedSpot.rating}}</text>
+        </view>
+        <text class="close-btn" bindtap="closeDetail">✕</text>
+      </view>
+
+      <view class="detail-content">
+        <view class="detail-row">
+          <text class="label">📍 地址</text>
+          <text class="value">{{selectedSpot.address}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">🐟 鱼种</text>
+          <text class="value">{{selectedSpot.fishTypes}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">🎣 饵料</text>
+          <text class="value">{{selectedSpot.bait}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">⏰ 开放时间</text>
+          <text class="value">{{selectedSpot.openHours}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">💰 价格</text>
+          <text class="value">{{selectedSpot.price}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="label">👤 去过</text>
+          <text class="value">{{selectedSpot.checkinCount}}人</text>
+        </view>
+      </view>
+
+      <view class="detail-actions">
+        <view class="action-btn primary" bindtap="navigateToSpot">导航到这</view>
+        <view class="action-btn" bindtap="checkinSpot">打卡</view>
+      </view>
+    </view>
+  </view>
+</view>

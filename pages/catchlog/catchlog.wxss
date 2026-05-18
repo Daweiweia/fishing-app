@@ -1,0 +1,148 @@
+.publish-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+  margin: 30rpx;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  color: #fff;
+}
+
+.publish-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.publish-left .icon {
+  font-size: 48rpx;
+}
+
+.publish-left .text {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 32rpx;
+  opacity: 0.8;
+}
+
+.section {
+  padding: 0 30rpx 30rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a3a5c;
+}
+
+.section-more {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.fish-book {
+  display: flex;
+  gap: 20rpx;
+  overflow-x: auto;
+  padding-bottom: 10rpx;
+}
+
+.fish-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 140rpx;
+}
+
+.fish-img-placeholder {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+.fish-icon {
+  font-size: 56rpx;
+}
+
+.fish-name {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.fish-count {
+  font-size: 22rpx;
+  color: #1a3a5c;
+  font-weight: bold;
+}
+
+.catch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.catch-item {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.catch-img-placeholder {
+  width: 180rpx;
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.catch-icon {
+  font-size: 72rpx;
+}
+
+.catch-info {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.catch-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.catch-info .fish-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.catch-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.catch-meta {
+  display: flex;
+  gap: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+}

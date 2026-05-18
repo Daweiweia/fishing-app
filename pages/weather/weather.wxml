@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 城市选择按钮 -->
+  <scroll-view scroll-x class="city-scroll">
+    <view class="city-list">
+      <text 
+        class="city-btn {{city === item ? 'active' : ''}}" 
+        wx:for="{{cities}}" 
+        wx:key="*this"
+        data-city="{{item}}"
+        bindtap="onCityTap"
+      >{{item}}</text>
+    </view>
+  </scroll-view>
+
+  <view class="weather-card">
+    <view class="weather-main">
+      <text class="temp">{{temperature}}</text>
+      <text class="unit">°C</text>
+    </view>
+    <view class="weather-desc">{{weatherDesc}}</view>
+    <view class="date-info">{{date}}</view>
+  </view>
+
+  <view class="details-card">
+    <view class="detail-row">
+      <view class="detail-item">
+        <text class="label">气压</text>
+        <text class="value">{{pressure}} hPa</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">湿度</text>
+        <text class="value">{{humidity}}%</text>
+      </view>
+    </view>
+    <view class="detail-row">
+      <view class="detail-item">
+        <text class="label">风力</text>
+        <text class="value">{{wind}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="label">水温</text>
+        <text class="value">{{waterTemp}}°C</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="fishing-card">
+    <view class="fishing-header">
+      <text class="title">🎣 钓鱼指数</text>
+      <view class="stars">
+        <text class="star" wx:for="{{fishingIndex}}" wx:key="*this">⭐</text>
+      </view>
+    </view>
+    <text class="advice">{{fishingAdvice}}</text>
+  </view>
+
+  <view class="tide-card" wx:if="{{tideData.length > 0}}">
+    <text class="section-title">🌊 潮汐时间</text>
+    <view class="tide-list">
+      <view class="tide-item" wx:for="{{tideData}}" wx:key="time">
+        <text class="tide-time">{{item.time}}</text>
+        <text class="tide-type {{item.type}}">{{item.type === 'up' ? '涨潮' : '退潮'}}</text>
+        <text class="tide-height">{{item.height}}m</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="sun-card">
+    <view class="sun-item">
+      <text class="sun-icon">🌅</text>
+      <text class="sun-label">日出</text>
+      <text class="sun-time">{{sunrise}}</text>
+    </view>
+    <view class="sun-item">
+      <text class="sun-icon">🌇</text>
+      <text class="sun-label">日落</text>
+      <text class="sun-time">{{sunset}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,93 @@
+<view class="container">
+  <!-- 顶部 Banner -->
+  <view class="banner">
+    <view class="banner-text">
+      <text class="title">去哪钓</text>
+      <text class="subtitle">发现附近好钓点</text>
+    </view>
+    <view class="search-box" bindtap="goToSpots">
+      <text class="icon">🔍</text>
+      <text class="placeholder">搜索钓点、鱼种...</text>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-entry">
+    <view class="entry-item" bindtap="goToSpots">
+      <view class="entry-icon">📍</view>
+      <text class="entry-text">找钓点</text>
+    </view>
+    <view class="entry-item" bindtap="goToWeather">
+      <view class="entry-icon">🌦️</view>
+      <text class="entry-text">看天气</text>
+    </view>
+    <view class="entry-item" bindtap="goToCatchlog">
+      <view class="entry-icon">📸</view>
+      <text class="entry-text">记鱼获</text>
+    </view>
+    <view class="entry-item" bindtap="goToCommunity">
+      <view class="entry-icon">💬</view>
+      <text class="entry-text">钓友圈</text>
+    </view>
+  </view>
+
+  <!-- 附近钓点 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📍 附近钓点</text>
+      <text class="section-more" bindtap="goToSpots">更多 ></text>
+    </view>
+    <scroll-view scroll-x class="spots-scroll">
+      <view class="spots-list">
+        <view class="spot-card" wx:for="{{nearbySpots}}" wx:key="id" bindtap="goToSpotDetail" data-id="{{item.id}}">
+          <view class="spot-img-placeholder" style="background:{{item.bgColor}}">
+            <text class="spot-icon">{{item.icon}}</text>
+          </view>
+          <view class="spot-info">
+            <text class="spot-name">{{item.name}}</text>
+            <text class="spot-distance">{{item.distance}}km</text>
+          </view>
+          <view class="spot-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 今日钓鱼指数 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🌡️ 今日钓鱼指数</text>
+      <text class="section-more" bindtap="goToWeather">详情 ></text>
+    </view>
+    <view class="weather-card">
+      <view class="weather-main">
+        <text class="weather-score">{{fishingIndex}}</text>
+        <text class="weather-label">/ 5星</text>
+      </view>
+      <view class="weather-tips">
+        <text class="tip-item" wx:for="{{fishingTips}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门鱼获 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📸 热门鱼获</text>
+      <text class="section-more" bindtap="goToCatchlog">更多 ></text>
+    </view>
+    <view class="catch-list">
+      <view class="catch-item" wx:for="{{hotCatches}}" wx:key="id" bindtap="goToCatchDetail" data-id="{{item.id}}">
+        <view class="catch-img-placeholder" style="background:{{item.bgColor}}">
+          <text class="catch-icon">{{item.icon}}</text>
+        </view>
+        <view class="catch-info">
+          <text class="fish-name">{{item.fishName}}</text>
+          <text class="catch-size">{{item.size}}cm · {{item.weight}}kg</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

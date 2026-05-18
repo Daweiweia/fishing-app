@@ -1,0 +1,138 @@
+.search-bar {
+  display: flex;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  gap: 20rpx;
+}
+
+.search-input {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  padding: 16rpx 30rpx;
+  font-size: 28rpx;
+}
+
+.filter-btn {
+  background: #1a3a5c;
+  color: #fff;
+  padding: 16rpx 30rpx;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  line-height: 1;
+}
+
+.category-scroll {
+  white-space: nowrap;
+  background: #fff;
+  padding-bottom: 20rpx;
+}
+
+.category-list {
+  display: inline-flex;
+  padding: 0 20rpx;
+  gap: 16rpx;
+}
+
+.category-item {
+  padding: 10rpx 28rpx;
+  background: #f5f5f5;
+  border-radius: 50rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.category-item.active {
+  background: #1a3a5c;
+  color: #fff;
+}
+
+.spot-list {
+  padding: 20rpx 30rpx;
+}
+
+.spot-item {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.spot-cover-placeholder {
+  width: 200rpx;
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 16rpx 0 0 16rpx;
+}
+.spot-icon {
+  font-size: 72rpx;
+}
+
+.spot-content {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spot-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.spot-distance {
+  font-size: 24rpx;
+  color: #1a3a5c;
+}
+
+.spot-tags {
+  display: flex;
+  gap: 8rpx;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #e8f4ff;
+  color: #1a3a5c;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.spot-meta {
+  display: flex;
+  gap: 20rpx;
+}
+
+.meta-item {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.add-btn {
+  position: fixed;
+  bottom: 120rpx;
+  right: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: #1a3a5c;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 60rpx;
+  line-height: 100rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 20rpx rgba(26,58,92,0.4);
+}

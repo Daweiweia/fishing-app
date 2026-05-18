@@ -1,0 +1,51 @@
+<view class="container">
+  <!-- 发布鱼获入口 -->
+  <view class="publish-card" bindtap="publishCatch">
+    <view class="publish-left">
+      <text class="icon">📸</text>
+      <text class="text">记录今天的鱼获</text>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <!-- 我的鱼谱 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🎏 我的鱼谱</text>
+      <text class="section-more" bindtap="viewFishBook">全部 ></text>
+    </view>
+    <view class="fish-book">
+      <view class="fish-item" wx:for="{{fishBook}}" wx:key="id">
+        <view class="fish-img-placeholder" style="background:{{item.bgColor}}">
+          <text class="fish-icon">{{item.icon}}</text>
+        </view>
+        <text class="fish-name">{{item.name}}</text>
+        <text class="fish-count">x{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 鱼获记录列表 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📜 鱼获记录</text>
+    </view>
+    <view class="catch-list">
+      <view class="catch-item" wx:for="{{catchList}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="catch-img-placeholder" style="background:{{item.bgColor}}">
+          <text class="catch-icon">{{item.icon}}</text>
+        </view>
+        <view class="catch-info">
+          <view class="catch-header">
+            <text class="fish-name">{{item.fishName}}</text>
+            <text class="catch-date">{{item.date}}</text>
+          </view>
+          <view class="catch-meta">
+            <text>{{item.size}}cm · {{item.weight}}kg</text>
+            <text>{{item.spotName}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

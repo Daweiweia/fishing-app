@@ -1,0 +1,99 @@
+.user-card {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+  padding: 60rpx 30rpx 40rpx;
+  color: #fff;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+}
+
+.info {
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.bio {
+  font-size: 26rpx;
+  opacity: 0.85;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20rpx;
+  padding: 30rpx 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 6rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  opacity: 0.85;
+}
+
+.menu-list {
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 36rpx 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.arrow {
+  font-size: 28rpx;
+  color: #ccc;
+}

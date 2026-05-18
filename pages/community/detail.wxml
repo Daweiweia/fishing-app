@@ -1,0 +1,104 @@
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text>← 返回</text>
+    </view>
+    <text class="nav-title">渔乐圈</text>
+    <view style="width:100rpx"></view>
+  </view>
+
+  <!-- 帖子主体 -->
+  <scroll-view scroll-y class="post-scroll" bindscrolltolower="onScrollToLower">
+    <view class="post-card" wx:if="{{post}}">
+      <view class="post-header">
+        <text class="avatar">{{post.userIcon || '🧑‍🎣'}}</text>
+        <view class="user-info">
+          <text class="username">{{post.author_name || '匿名用户'}}</text>
+          <text class="post-time">{{post.timeAgo}}</text>
+        </view>
+      </view>
+      <view class="post-content">
+        <text class="post-text">{{post.content}}</text>
+        <view class="post-images" wx:if="{{post.images.length > 0}}">
+          <image class="post-img" src="{{img}}" mode="aspectFill" wx:for="{{post.images}}" wx:key="*this"/>
+        </view>
+      </view>
+      <view class="post-tags" wx:if="{{post.topic && post.topic !== 'all'}}">
+        <text class="tag">#{{post.topic}}</text>
+      </view>
+      <view class="post-actions">
+        <view class="action-item">
+          <text class="icon">🤍</text>
+          <text>{{post.likes || 0}}</text>
+        </view>
+        <view class="action-item">
+          <text class="icon">💬</text>
+          <text>{{post.comment_count || 0}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 评论区 -->
+    <view class="comment-section">
+      <view class="section-header">
+        <text class="section-title">评论</text>
+        <text class="comment-count">{{comments.length}}条</text>
+      </view>
+
+      <!-- 评论列表 -->
+      <view class="comment-list" wx:if="{{comments.length > 0}}">
+        <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+          <view class="comment-main">
+            <text class="avatar small">{{item.userIcon || '🧑‍🎣'}}</text>
+            <view class="comment-body">
+              <view class="comment-header">
+                <text class="commenter-name">{{item.author_name || '匿名用户'}}</text>
+                <text class="comment-time">{{item.created_at}}</text>
+              </view>
+              <text class="comment-content">{{item.content}}</text>
+              <view class="comment-actions">
+                <text class="action-text" bindtap="onLikeComment" data-id="{{item.id}}">👍 {{item.likes || 0}}</text>
+                <text class="action-text" bindtap="onReplyComment" data-comment="{{item}}">回复</text>
+              </view>
+
+              <!-- 回复列表 -->
+              <view class="reply-list" wx:if="{{item.replies && item.replies.length > 0}}">
+                <view class="reply-item" wx:for="{{item.replies}}" wx:key="id">
+                  <text class="reply-name">{{item.author_name || '匿名用户'}}</text>
+                  <text class="reply-arrow" wx:if="{{item.reply_to_name}}"> 回复 </text>
+                  <text class="reply-name to" wx:if="{{item.reply_to_name}}">{{item.reply_to_name}}</text>
+                  <text class="reply-content">: {{item.content}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty" wx:else>
+        <text>暂无评论，来抢沙发</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部评论输入框 -->
+  <view class="comment-input-box {{replyToComment ? 'has-reply' : ''}}">
+    <!-- 回复目标提示 -->
+    <view class="reply-tip" wx:if="{{replyToComment}}">
+      <text>回复 {{replyToComment.author_name || '匿名用户'}}：</text>
+      <text class="cancel-reply" bindtap="onCancelReply">取消</text>
+    </view>
+    <!-- 输入框 -->
+    <view class="input-row">
+      <input
+        class="comment-input"
+        placeholder="{{replyToComment ? '写下你的回复...' : '写评论...' }}"
+        value="{{replyToComment ? replyText : commentText}}"
+        bindinput="{{replyToComment ? 'onReplyInput' : 'onCommentInput'}}"
+        bindconfirm="{{replyToComment ? 'onSubmitReply' : 'onSubmitComment'}}"
+      />
+      <button class="send-btn" bindtap="{{replyToComment ? 'onSubmitReply' : 'onSubmitComment'}}">发送</button>
+    </view>
+  </view>
+</view>
