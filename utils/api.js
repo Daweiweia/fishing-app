@@ -49,6 +49,7 @@ const API = {
   addSpotReview: (data) => request('/api/spots/review/add', 'POST', data),
   checkinSpot: (data) => request('/api/spots/checkin', 'POST', data),
   getUserInfo: (openid) => request(`/api/user/info/${openid}`),
+  login: (data) => request('/api/user/login', 'POST', data),
   getWeather: (city) => request(`/api/weather/current?city=${encodeURIComponent(city)}`),
 };
 

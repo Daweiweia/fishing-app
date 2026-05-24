@@ -1,4 +1,9 @@
+const app = getApp();
 const { API } = require('../../utils/api.js');
+
+function getUserId() {
+  return app.globalData.openid || wx.getStorageSync('openid') || '';
+}
 
 function formatTime(ts) {
   if (!ts) return '';
@@ -92,7 +97,7 @@ Page({
     }
     API.comment({
       post_id: postId,
-      user_id: 1,
+      user_id: getUserId(),
       content: commentText,
     }).then(() => {
       wx.showToast({ title: '评论成功', icon: 'success' });
@@ -123,7 +128,7 @@ Page({
     }
     API.comment({
       post_id: postId,
-      user_id: 1,
+      user_id: getUserId(),
       content: replyText,
       parent_id: replyToComment.id,
       reply_to_name: replyToComment.author_name || '匿名用户',
@@ -138,7 +143,7 @@ Page({
 
   onLikeComment(e) {
     const commentId = e.currentTarget.dataset.id;
-    API.likeComment(commentId, 1).then(() => {
+    API.likeComment(commentId, getUserId()).then(() => {
       this.loadComments();
     }).catch(err => {
       wx.showToast({ title: err.message || '点赞失败', icon: 'none' });

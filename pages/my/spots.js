@@ -1,4 +1,9 @@
+const app = getApp();
 const { API } = require('../../utils/api.js');
+
+function getUserId() {
+  return app.globalData.openid || wx.getStorageSync('openid') || '';
+}
 
 Page({
   data: {
@@ -13,7 +18,12 @@ Page({
   async loadMySpots() {
     try {
       wx.showLoading({ title: '加载中...' });
-      const openid = 'test_openid_001';
+      const openid = getUserId();
+      if (!openid) {
+        wx.hideLoading();
+        this.setData({ loading: false });
+        return;
+      }
       const user = await API.getUserInfo(openid);
       // 获取用户去过和收藏的钓点
       const result = await API.getSpots({ user_id: user.id, limit: 50 });

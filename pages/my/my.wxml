@@ -1,14 +1,21 @@
 <view class="container">
   <!-- 用户信息 -->
-  <view class="user-card">
+  <view class="user-card {{loggedIn ? '' : 'unlogin'}}" bindtap="onLoginTap">
     <view class="user-info">
-      <text class="avatar">{{userInfo.userIcon}}</text>
-      <view class="info">
+      <view class="avatar-wrap">
+        <text class="avatar-icon">{{userInfo.userIcon}}</text>
+        <image wx:if="{{userInfo.avatar}}" class="avatar-img" src="{{userInfo.avatar}}" mode="aspectFill" />
+      </view>
+      <view class="info" wx:if="{{loggedIn}}">
         <text class="nickname">{{userInfo.nickname}}</text>
-        <text class="bio">{{userInfo.bio}}</text>
+        <text class="bio">{{userInfo.bio || '钓鱼爱好者'}}</text>
+      </view>
+      <view class="info" wx:if="{{!loggedIn}}">
+        <text class="nickname">点击登录</text>
+        <text class="bio">登录后享受完整功能</text>
       </view>
     </view>
-    <view class="user-stats">
+    <view class="user-stats" wx:if="{{loggedIn}}">
       <view class="stat-item">
         <text class="stat-num">{{userInfo.fishCount}}</text>
         <text class="stat-label">鱼种</text>
@@ -21,6 +28,9 @@
         <text class="stat-num">{{userInfo.spotCount}}</text>
         <text class="stat-label">钓点</text>
       </view>
+    </view>
+    <view class="login-hint" wx:if="{{!loggedIn}}">
+      <text>登录后同步你的鱼获、钓点数据</text>
     </view>
   </view>
 

@@ -1,4 +1,9 @@
+const app = getApp();
 const { API } = require('../../utils/api.js');
+
+function getUserId() {
+  return app.globalData.openid || wx.getStorageSync('openid') || '';
+}
 
 Page({
   data: {
@@ -86,7 +91,7 @@ Page({
         weight: parseFloat(weight) || 0,
         spot_id,
         spot_name,
-        user_id: 1,
+        user_id: getUserId(),
       });
       wx.showToast({ title: '发布成功', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 1500);

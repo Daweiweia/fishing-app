@@ -1,4 +1,9 @@
+const app = getApp();
 const { API } = require('../../utils/api.js');
+
+function getUserId() {
+  return app.globalData.openid || wx.getStorageSync('openid') || '';
+}
 
 Page({
   data: {
@@ -18,8 +23,12 @@ Page({
     try {
       wx.showLoading({ title: '加载中...' });
 
-      // 获取当前用户ID，模拟用 test_openid_001
-      const userId = 1;
+      // 获取当前用户ID
+      const userId = getUserId();
+      if (!userId) {
+        wx.hideLoading();
+        return;
+      }
 
       const [fishbook, catches] = await Promise.all([
         API.getFishBook(userId),

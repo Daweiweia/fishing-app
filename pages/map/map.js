@@ -1,4 +1,9 @@
+const app = getApp();
 const { API } = require('../../utils/api.js');
+
+function getUserId() {
+  return app.globalData.openid || wx.getStorageSync('openid') || '';
+}
 
 Page({
   data: {
@@ -174,7 +179,7 @@ Page({
 
     try {
       wx.showLoading({ title: '打卡中...' });
-      await API.checkinSpot({ spot_id: spot.id, user_id: 1 });
+      await API.checkinSpot({ spot_id: spot.id, user_id: getUserId() });
       wx.hideLoading();
       wx.showToast({ title: '打卡成功！', icon: 'success' });
       // 更新本地数据
