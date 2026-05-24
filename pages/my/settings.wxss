@@ -50,3 +50,11 @@
   font-size: 24rpx;
   color: #ccc;
 }
+
+.menu-item.danger {
+  border-bottom: none;
+}
+
+.menu-item.danger .menu-text {
+  color: #e74c3c;
+}
