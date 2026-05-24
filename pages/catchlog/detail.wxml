@@ -1,0 +1,30 @@
+<view class="container" wx:if="{{!loading && detail}}">
+  <view class="fish-card">
+    <view class="fish-icon-wrap" style="background:{{detail.bgColor}}">
+      <text class="fish-icon">{{detail.icon}}</text>
+    </view>
+    <view class="fish-info">
+      <text class="fish-name">{{detail.fishName}}</text>
+      <view class="fish-stats">
+        <text class="stat">📏 {{detail.size}}cm</text>
+        <text class="stat">⚖️ {{detail.weight}}kg</text>
+        <text class="stat">📍 {{detail.spotName}}</text>
+      </view>
+      <text class="fish-date">{{detail.date}}</text>
+    </view>
+  </view>
+
+  <view class="content-section" wx:if="{{detail.content}}">
+    <text class="content-text">{{detail.content}}</text>
+  </view>
+
+  <view class="image-section" wx:if="{{detail.images && detail.images.length > 0}}">
+    <view class="image-list">
+      <image class="catch-img" src="{{img}}" mode="aspectFill" wx:for="{{detail.images}}" wx:key="*this"/>
+    </view>
+  </view>
+</view>
+
+<view class="loading" wx:if="{{loading}}">
+  <text>加载中...</text>
+</view>

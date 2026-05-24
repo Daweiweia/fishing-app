@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">🎏 我的鱼谱</text>
+  </view>
+
+  <view class="fish-grid" wx:if="{{!loading && fishBook.length > 0}}">
+    <view class="fish-card" wx:for="{{fishBook}}" wx:key="id">
+      <view class="fish-icon-wrap" style="background:{{item.bgColor}}">
+        <text class="fish-icon">{{item.icon}}</text>
+      </view>
+      <text class="fish-name">{{item.name}}</text>
+      <text class="fish-count">累计 {{item.count}} 条</text>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && fishBook.length === 0}}">
+    <text class="empty-icon">🎏</text>
+    <text class="empty-text">鱼谱空空如也</text>
+    <text class="empty-hint">记录鱼获后会生成鱼谱</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

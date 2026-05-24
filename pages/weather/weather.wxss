@@ -1,27 +1,145 @@
-.city-scroll {
-  white-space: nowrap;
+/* 城市选择 - 顶部显示 */
+.current-city-wrap {
   padding: 20rpx 30rpx;
   background: #fff;
-}
-
-.city-list {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   gap: 16rpx;
 }
 
-.city-btn {
-  padding: 12rpx 28rpx;
+.current-city {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 10rpx 20rpx;
+  background: #1a3a5c;
+  border-radius: 50rpx;
+}
+
+.city-name {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.city-arrow {
+  font-size: 20rpx;
+  color: rgba(255,255,255,0.7);
+}
+
+.location-hint {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 城市选择弹窗 */
+.city-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.city-picker-mask.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.city-picker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  max-height: 70vh;
+}
+
+.city-picker.show {
+  transform: translateY(0);
+}
+
+.picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.picker-close {
+  font-size: 48rpx;
+  color: #999;
+  line-height: 1;
+}
+
+.city-grid {
+  padding: 20rpx;
+  max-height: 60vh;
+}
+
+.city-item {
+  display: inline-block;
+  padding: 14rpx 26rpx;
+  margin: 10rpx;
   background: #f5f5f5;
   border-radius: 50rpx;
   font-size: 28rpx;
   color: #666;
 }
 
-.city-btn.active {
+.city-item.active {
   background: #1a3a5c;
   color: #fff;
 }
 
+/* 搜索框 */
+.search-wrap {
+  padding: 20rpx 30rpx;
+  position: relative;
+  border-bottom: 1rpx solid #eee;
+}
+
+.search-input {
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  padding: 16rpx 30rpx;
+  font-size: 28rpx;
+}
+
+.search-clear {
+  position: absolute;
+  right: 50rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40rpx;
+  color: #999;
+  padding: 0 20rpx;
+}
+
+.city-empty {
+  text-align: center;
+  padding: 60rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 天气主卡片 */
 .weather-card {
   background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
   color: #fff;
@@ -57,6 +175,7 @@
   opacity: 0.7;
 }
 
+/* 详情卡片 */
 .details-card {
   background: #fff;
   margin: -20rpx 30rpx 0;
@@ -94,6 +213,7 @@
   font-weight: bold;
 }
 
+/* 钓鱼指数 */
 .fishing-card, .tide-card, .sun-card {
   margin: 30rpx;
   background: #fff;
@@ -125,6 +245,7 @@
   line-height: 1.6;
 }
 
+/* 潮汐 */
 .section-title {
   font-size: 32rpx;
   font-weight: bold;
@@ -180,6 +301,7 @@
   margin-left: auto;
 }
 
+/* 日出日落 */
 .sun-card {
   display: flex;
   justify-content: space-around;

@@ -1,26 +1,48 @@
 <view class="container">
-  <!-- 城市选择按钮 -->
-  <scroll-view scroll-x class="city-scroll">
-    <view class="city-list">
-      <text 
-        class="city-btn {{city === item ? 'active' : ''}}" 
-        wx:for="{{cities}}" 
-        wx:key="*this"
-        data-city="{{item}}"
-        bindtap="onCityTap"
-      >{{item}}</text>
+  <!-- 当前城市显示 + 点击展开选择 -->
+  <view class="current-city-wrap" bindtap="toggleCityPicker">
+    <view class="current-city">
+      <text class="city-name">{{currentCity}}</text>
+      <text class="city-arrow">▼</text>
     </view>
-  </scroll-view>
+    <text class="location-hint">点击选择城市</text>
+  </view>
 
+  <!-- 城市选择弹窗 -->
+  <view class="city-picker-mask {{showCityPicker ? 'show' : ''}}" bindtap="toggleCityPicker"></view>
+  <view class="city-picker {{showCityPicker ? 'show' : ''}}">
+    <view class="picker-header">
+      <text class="picker-title">选择城市</text>
+      <text class="picker-close" bindtap="toggleCityPicker">×</text>
+    </view>
+    <!-- 搜索框 -->
+    <view class="search-wrap">
+      <input class="search-input" placeholder="搜索城市" value="{{searchValue}}" bindinput="onSearchInput" bindconfirm="onSearchClear" confirm-type="search" />
+      <text class="search-clear" wx:if="{{searchValue}}" bindtap="onSearchClear">×</text>
+    </view>
+    <!-- 城市列表 -->
+    <scroll-view scroll-y class="city-grid">
+      <view class="city-item {{currentCity === item ? 'active' : ''}}" 
+            wx:for="{{filteredCities}}" 
+            wx:key="*this"
+            data-city="{{item}}"
+            bindtap="onCityTap"
+      >{{item}}</view>
+      <view class="city-empty" wx:if="{{filteredCities.length === 0}}">未找到城市 "{{searchValue}}"</view>
+    </scroll-view>
+  </view>
+
+  <!-- 天气主卡片 -->
   <view class="weather-card">
     <view class="weather-main">
       <text class="temp">{{temperature}}</text>
       <text class="unit">°C</text>
     </view>
     <view class="weather-desc">{{weatherDesc}}</view>
-    <view class="date-info">{{date}}</view>
+    <view class="date-info">{{date}} · {{currentCity}}</view>
   </view>
 
+  <!-- 详情卡片 -->
   <view class="details-card">
     <view class="detail-row">
       <view class="detail-item">
@@ -44,6 +66,7 @@
     </view>
   </view>
 
+  <!-- 钓鱼指数 -->
   <view class="fishing-card">
     <view class="fishing-header">
       <text class="title">🎣 钓鱼指数</text>
@@ -54,6 +77,7 @@
     <text class="advice">{{fishingAdvice}}</text>
   </view>
 
+  <!-- 潮汐 -->
   <view class="tide-card" wx:if="{{tideData.length > 0}}">
     <text class="section-title">🌊 潮汐时间</text>
     <view class="tide-list">
@@ -65,6 +89,7 @@
     </view>
   </view>
 
+  <!-- 日出日落 -->
   <view class="sun-card">
     <view class="sun-item">
       <text class="sun-icon">🌅</text>

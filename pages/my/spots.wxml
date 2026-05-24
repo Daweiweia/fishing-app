@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">📍 我的钓点</text>
+  </view>
+
+  <view class="spot-list" wx:if="{{!loading && spots.length > 0}}">
+    <view class="spot-item" wx:for="{{spots}}" wx:key="id" bindtap="goToSpotDetail" data-id="{{item.id}}">
+      <view class="spot-badge" style="background:{{item.bgColor}}">
+        <text>{{item.icon}}</text>
+      </view>
+      <view class="spot-info">
+        <text class="spot-name">{{item.name}}</text>
+        <text class="spot-address">{{item.address}}</text>
+        <view class="spot-meta">
+          <text class="rating">⭐ {{item.rating}}</text>
+          <text class="checkin">📍 {{item.checkinCount}}次打卡</text>
+          <text class="price">{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!loading && spots.length === 0}}">
+    <text class="empty-icon">📍</text>
+    <text class="empty-text">还没有去过任何钓点</text>
+    <text class="empty-hint">快去探索吧</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">📸 发布鱼获</text>
+  </view>
+
+  <!-- 鱼种选择 -->
+  <view class="section">
+    <text class="section-title">鱼种</text>
+    <view class="fish-grid">
+      <view class="fish-item {{formData.fish_name === item ? 'active' : ''}}" 
+            wx:for="{{fishTypes}}" wx:key="*this"
+            data-fish="{{item}}" bindtap="onFishTypeTap">
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 尺寸重量 -->
+  <view class="section">
+    <view class="input-row">
+      <view class="input-item">
+        <text class="input-label">长度 (cm)</text>
+        <input class="input" type="digit" placeholder="可选" value="{{formData.size}}" data-field="size" bindinput="onInput" />
+      </view>
+      <view class="input-item">
+        <text class="input-label">重量 (kg)</text>
+        <input class="input" type="digit" placeholder="可选" value="{{formData.weight}}" data-field="weight" bindinput="onInput" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 钓点选择 -->
+  <view class="section">
+    <text class="section-title">钓点</text>
+    <picker mode="selector" range="{{spotList}}" range-key="name" bindchange="onSpotChange">
+      <view class="picker-show">
+        <text>{{formData.spot_name || '请选择钓点'}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="section">
+    <text class="section-title">图片（可选）</text>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{formData.images}}" wx:key="*this">
+        <image class="preview-img" src="{{item}}" mode="aspectFill" />
+        <text class="remove-btn" data-idx="{{index}}" bindtap="onRemoveImage">×</text>
+      </view>
+      <view class="add-image-btn" bindtap="onAddImage" wx:if="{{formData.images.length < 9}}">
+        <text>+</text>
+        <text class="add-text">添加图片</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="submit-btn-wrap">
+    <button class="submit-btn {{submitting ? 'disabled' : ''}}" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '发布中...' : '发布鱼获'}}
+    </button>
+  </view>
+</view>
