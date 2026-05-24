@@ -4,17 +4,19 @@ Page({
   data: {
     currentCategory: 'all',
     spots: [],
+    searchKeyword: '',
   },
 
   onLoad() {
     this.loadSpots();
   },
 
-  loadSpots() {
-    const params = {};
-    if (this.data.currentCategory !== 'all') {
-      params.type = this.data.currentCategory;
-    }
+  loadSpots(queryParams = {}) {
+    const { currentCategory, searchKeyword } = this.data;
+    const params = { ...queryParams };
+    if (currentCategory !== 'all') params.type = currentCategory;
+    if (searchKeyword) params.keyword = searchKeyword;
+
     API.getSpots(params).then(result => {
       const list = result && result.list ? result.list : [];
       const spots = list.map(s => ({
@@ -34,17 +36,15 @@ Page({
   },
 
   onSearch(e) {
-    console.log('搜索:', e.detail.value);
-  },
-
-  showFilter() {
-    wx.showToast({ title: '筛选功能开发中', icon: 'none' });
+    const keyword = e.detail.value || '';
+    this.setData({ searchKeyword: keyword });
+    this.loadSpots({ keyword });
   },
 
   selectCategory(e) {
     const cat = e.currentTarget.dataset.cat;
-    this.setData({ currentCategory: cat });
-    this.loadSpots();
+    this.setData({ currentCategory: cat, searchKeyword: '' });
+    this.loadSpots({ type: cat !== 'all' ? cat : undefined });
   },
 
   goToDetail(e) {
@@ -55,7 +55,7 @@ Page({
   },
 
   addSpot() {
-    wx.showToast({ title: '添加钓点功能开发中', icon: 'none' });
+    wx.navigateTo({ url: '/pages/spots/add' });
   },
 
   goToMap() {

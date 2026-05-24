@@ -150,6 +150,23 @@ Page({
     });
   },
 
+  onLikePost() {
+    const { postId } = this.data;
+    API.likePost(postId, getUserId()).then(() => {
+      const post = this.data.post;
+      this.setData({
+        post: {
+          ...post,
+          liked: !post.liked,
+          likes: post.liked ? (post.likes || 1) - 1 : (post.likes || 0) + 1,
+        }
+      });
+    }).catch(err => {
+      wx.showToast({ title: err.message || '点赞失败', icon: 'none' });
+    });
+  },
+
+
   onScrollToLower() {
     this.loadComments(true);
   },

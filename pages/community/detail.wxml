@@ -28,8 +28,8 @@
         <text class="tag">#{{post.topic}}</text>
       </view>
       <view class="post-actions">
-        <view class="action-item">
-          <text class="icon">🤍</text>
+        <view class="action-item" bindtap="onLikePost">
+          <text class="icon">{{post.liked ? '❤️' : '🤍'}}</text>
           <text>{{post.likes || 0}}</text>
         </view>
         <view class="action-item">

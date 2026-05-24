@@ -1,0 +1,79 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">📍 添加钓点</text>
+  </view>
+
+  <!-- 类型选择 -->
+  <view class="section">
+    <text class="section-title">钓点类型</text>
+    <view class="type-grid">
+      <view class="type-item {{formData.type === item.key ? 'active' : ''}}"
+            wx:for="{{types}}" wx:key="key"
+            data-type="{{item.key}}" bindtap="onTypeTap">
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="section">
+    <view class="input-group">
+      <text class="input-label">钓点名称 *</text>
+      <input class="input" placeholder="如：钱塘江北岸" value="{{formData.name}}" data-field="name" bindinput="onInput" />
+    </view>
+    <view class="input-group">
+      <text class="input-label">详细地址 *</text>
+      <input class="input" placeholder="如：杭州市钱塘区钱塘江畔" value="{{formData.address}}" data-field="address" bindinput="onInput" />
+    </view>
+    <view class="input-group">
+      <text class="input-label">主要鱼种</text>
+      <input class="input" placeholder="如：鲈鱼、鳜鱼、黑鱼" value="{{formData.fish_types}}" data-field="fish_types" bindinput="onInput" />
+    </view>
+  </view>
+
+  <!-- 定位 -->
+  <view class="section">
+    <text class="section-title">位置定位</text>
+    <view class="location-row">
+      <input class="input flex1" placeholder="经度" value="{{formData.longitude}}" data-field="longitude" bindinput="onInput" />
+      <input class="input flex1" placeholder="纬度" value="{{formData.latitude}}" data-field="latitude" bindinput="onInput" />
+      <view class="location-btn" bindtap="onGetLocation">📍 定位</view>
+    </view>
+  </view>
+
+  <!-- 价格 -->
+  <view class="section">
+    <text class="section-title">价格</text>
+    <picker mode="selector" range="{{priceOptions}}" bindchange="onPriceChange">
+      <view class="picker-show">
+        <text>{{formData.price || '请选择'}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 开放时间 -->
+  <view class="section">
+    <text class="section-title">开放时间</text>
+    <input class="input" placeholder="如：全天、06:00-18:00" value="{{formData.open_hours}}" data-field="open_hours" bindinput="onInput" />
+  </view>
+
+  <!-- 标签 -->
+  <view class="section">
+    <text class="section-title">标签（可选，最多5个）</text>
+    <view class="tag-list">
+      <view class="tag-item {{selectedTags.indexOf(item) !== -1 ? 'active' : ''}}"
+            wx:for="{{['野钓','免费','台钓','路亚','船钓','夜钓','鲫鱼','鲤鱼','草鱼','鳜鱼','鲈鱼','青鱼']}}"
+            wx:key="*this"
+            data-tag="{{item}}" bindtap="onTagToggle">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-wrap">
+    <button class="submit-btn {{submitting ? 'disabled' : ''}}" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '提交钓点'}}
+    </button>
+  </view>
+</view>

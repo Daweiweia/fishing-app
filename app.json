@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/spots/spots",
+    "pages/spots/add",
     "pages/weather/weather",
     "pages/catchlog/catchlog",
     "pages/community/community",

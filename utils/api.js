@@ -50,6 +50,27 @@ const API = {
   checkinSpot: (data) => request('/api/spots/checkin', 'POST', data),
   getUserInfo: (openid) => request(`/api/user/info/${openid}`),
   login: (data) => request('/api/user/login', 'POST', data),
+  uploadImage: (filePath) => {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('timeout')), 30000);
+      wx.uploadFile({
+        url: API_BASE + '/api/upload/image',
+        filePath,
+        name: 'image',
+        success(res) {
+          clearTimeout(timer);
+          const data = JSON.parse(res.data);
+          if (data.code === 0) resolve(data.data);
+          else reject(new Error(data.msg || '上传失败'));
+        },
+        fail(err) {
+          clearTimeout(timer);
+          reject(err);
+        }
+      });
+    });
+  },
+  uploadImages: (filePaths) => Promise.all(filePaths.map(p => API.uploadImage(p))),
   getWeather: (city) => request(`/api/weather/current?city=${encodeURIComponent(city)}`),
 };
 

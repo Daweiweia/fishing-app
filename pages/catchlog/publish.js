@@ -79,12 +79,19 @@ Page({
   },
 
   async onSubmit() {
-    const { fish_name, size, weight, spot_id, spot_name } = this.data.formData;
+    const { fish_name, size, weight, spot_id, spot_name, images } = this.data.formData;
     if (!fish_name) return wx.showToast({ title: '请选择鱼种', icon: 'none' });
     if (!spot_id) return wx.showToast({ title: '请选择钓点', icon: 'none' });
 
     this.setData({ submitting: true });
     try {
+      // 上传图片
+      let uploadedUrls = [];
+      if (images && images.length > 0) {
+        wx.showLoading({ title: '上传图片...' });
+        uploadedUrls = await API.uploadImages(images);
+      }
+
       await API.publishCatch({
         fish_name,
         size: parseFloat(size) || 0,
@@ -92,6 +99,7 @@ Page({
         spot_id,
         spot_name,
         user_id: getUserId(),
+        image: uploadedUrls.length > 0 ? uploadedUrls[0] : '',
       });
       wx.showToast({ title: '发布成功', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 1500);

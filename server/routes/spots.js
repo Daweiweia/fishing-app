@@ -10,7 +10,7 @@ router.get('/list', async (req, res) => {
     let params = [];
 
     if (type && type !== 'all') {
-      sql += ' AND FIND_IN_SET(?, tags)';
+      sql += ' AND type = ?';
       params.push(type);
     }
 

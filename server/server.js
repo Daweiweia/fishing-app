@@ -1,4 +1,5 @@
 require('dotenv').config({ path: __dirname + '/../.env' });
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -17,12 +18,17 @@ const catchRouter = require('./routes/catch');
 const communityRouter = require('./routes/community');
 const userRouter = require('./routes/user');
 const weatherRouter = require('./routes/weather');
+const uploadRouter = require('./routes/upload');
 
 app.use('/api/spots', spotsRouter);
 app.use('/api/catch', catchRouter);
 app.use('/api/community', communityRouter);
 app.use('/api/user', userRouter);
 app.use('/api/weather', weatherRouter);
+app.use('/api/upload', uploadRouter);
+
+// 静态文件（上传的图片）
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 健康检查
 app.get('/health', (req, res) => {
