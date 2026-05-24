@@ -47,6 +47,7 @@ const API = {
   likeComment: (commentId, userId) => request(`/api/community/comment/like/${commentId}`, 'POST', { user_id: userId }),
   getSpotReviews: (spotId, page) => request(`/api/spots/reviews/${spotId}?page=${page}&limit=10`),
   addSpotReview: (data) => request('/api/spots/review/add', 'POST', data),
+  checkinSpot: (data) => request('/api/spots/checkin', 'POST', data),
   getUserInfo: (openid) => request(`/api/user/info/${openid}`),
   getWeather: (city) => request(`/api/weather/current?city=${encodeURIComponent(city)}`),
 };

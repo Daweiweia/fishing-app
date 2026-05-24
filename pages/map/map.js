@@ -5,10 +5,13 @@ Page({
     latitude: 30.25,
     longitude: 120.18,
     keyword: '',
+    searchResult: [],
+    isSearching: false,
     markers: [],
     spots: [],
     showDetail: false,
     selectedSpot: null,
+    showSearchResult: false,
   },
 
   onLoad() {
@@ -18,8 +21,7 @@ Page({
   async loadSpots() {
     try {
       wx.showLoading({ title: '加载中...' });
-      const result = await API.getSpots({ limit: 50 });
-
+      const result = await API.getSpots({ limit: 100 });
       const spots = (result.list || []).map(s => ({
         id: s.id,
         name: s.name,
@@ -60,7 +62,6 @@ Page({
     } catch (err) {
       wx.hideLoading();
       console.error('加载钓点失败:', err);
-      // 使用模拟数据
       this.setData({
         markers: [{
           id: 1,
@@ -75,11 +76,55 @@ Page({
     }
   },
 
-  onSearch(e) {
+  onSearchInput(e) {
+    const keyword = e.detail.value.trim();
+    this.setData({ keyword });
+    if (!keyword) {
+      this.setData({ searchResult: [], showSearchResult: false });
+      return;
+    }
+    // 前端过滤
+    const result = this.data.spots.filter(s =>
+      s.name.includes(keyword) || s.address.includes(keyword) || s.fishTypes.includes(keyword)
+    );
+    this.setData({ searchResult: result, showSearchResult: true });
+  },
+
+  onSearchConfirm(e) {
     const keyword = e.detail.value || this.data.keyword;
     this.setData({ keyword });
-    // TODO: 搜索钓点
-    wx.showToast({ title: '搜索功能开发中', icon: 'none' });
+    this.doSearch(keyword);
+  },
+
+  onSearch() {
+    this.doSearch(this.data.keyword);
+  },
+
+  doSearch(keyword) {
+    if (!keyword.trim()) return;
+    const result = this.data.spots.filter(s =>
+      s.name.includes(keyword) || s.address.includes(keyword) || s.fishTypes.includes(keyword)
+    );
+    this.setData({ searchResult: result, showSearchResult: true });
+  },
+
+  onClearSearch() {
+    this.setData({ keyword: '', searchResult: [], showSearchResult: false });
+  },
+
+  onSearchItemTap(e) {
+    const id = e.currentTarget.dataset.id;
+    const spot = this.data.spots.find(s => s.id === id);
+    if (spot) {
+      this.setData({
+        latitude: spot.latitude,
+        longitude: spot.longitude,
+        showDetail: true,
+        selectedSpot: spot,
+        showSearchResult: false,
+        keyword: '',
+      });
+    }
   },
 
   onMarkerTap(e) {
@@ -114,7 +159,6 @@ Page({
   navigateToSpot() {
     const spot = this.data.selectedSpot;
     if (!spot) return;
-
     wx.openLocation({
       latitude: spot.latitude,
       longitude: spot.longitude,
@@ -130,13 +174,21 @@ Page({
 
     try {
       wx.showLoading({ title: '打卡中...' });
-      // TODO: 调用后端打卡接口
+      await API.checkinSpot({ spot_id: spot.id, user_id: 1 });
       wx.hideLoading();
       wx.showToast({ title: '打卡成功！', icon: 'success' });
-      this.closeDetail();
+      // 更新本地数据
+      const spots = this.data.spots.map(s => {
+        if (s.id === spot.id) {
+          return { ...s, checkinCount: (s.checkinCount || 0) + 1 };
+        }
+        return s;
+      });
+      const selectedSpot = { ...spot, checkinCount: (spot.checkinCount || 0) + 1 };
+      this.setData({ spots, selectedSpot });
     } catch (err) {
       wx.hideLoading();
-      wx.showToast({ title: '打卡失败', icon: 'none' });
+      wx.showToast({ title: err.message || '打卡失败', icon: 'none' });
     }
   },
 });

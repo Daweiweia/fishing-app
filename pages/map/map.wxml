@@ -1,8 +1,31 @@
 <view class="container">
   <!-- 顶部搜索栏 -->
   <view class="search-bar">
-    <input class="search-input" placeholder="搜索钓点..." bindconfirm="onSearch" value="{{keyword}}"/>
+    <input class="search-input" placeholder="搜索钓点/鱼种/地址..." 
+           value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
     <view class="search-btn" bindtap="onSearch">搜索</view>
+  </view>
+
+  <!-- 搜索结果下拉 -->
+  <view class="search-result {{showSearchResult ? 'show' : ''}}" wx:if="{{showSearchResult}}">
+    <view class="result-header">
+      <text>找到 {{searchResult.length}} 个结果</text>
+      <text class="close-btn" bindtap="onClearSearch">×</text>
+    </view>
+    <scroll-view scroll-y class="result-list">
+      <view class="result-item" wx:for="{{searchResult}}" wx:key="id" 
+            bindtap="onSearchItemTap" data-id="{{item.id}}">
+        <text class="result-icon">{{item.icon}}</text>
+        <view class="result-info">
+          <text class="result-name">{{item.name}}</text>
+          <text class="result-address">{{item.address}}</text>
+        </view>
+        <text class="result-rating">⭐ {{item.rating}}</text>
+      </view>
+      <view class="result-empty" wx:if="{{searchResult.length === 0}}">
+        <text>未找到 "{{keyword}}" 相关钓点</text>
+      </view>
+    </scroll-view>
   </view>
 
   <!-- 地图区域 -->
